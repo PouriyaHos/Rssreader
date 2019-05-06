@@ -1,0 +1,148 @@
+{% extends 'rss/base.html' %}
+{% load bootstrap %}
+
+{% load staticfiles %}
+
+{% block body %}
+
+
+<div id="rss-app" class="container mt-4">
+  <ul class="nav mb-4">
+    <li class="nav-item">
+      <a class="nav-link" href="#feeds" @click="setRoute('feeds')">Feeds</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#controls" @click="setRoute('controls')">Controls</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#search" @click="setRoute('search')">Search</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#home" @click="setRoute('home')">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#news" @click="setRoute('news')">News</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#show" @click="setRoute('show')">Show</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#sport" @click="setRoute('sport')">Sport</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#life" @click="setRoute('life')">Life&Style</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#tech" @click="setRoute('tech')">SCI/Tech</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#viral" @click="setRoute('viral')">Viral</a>
+    </li>
+  </ul>
+
+
+
+  <div class="row mb-4">
+    <div class="col-4">
+      <input type="text" v-model="newLink" placeholder="RSS feed URL" class="form-control">
+    </div>
+    <div class="col-2">
+      <button class="btn btn-secondary" @click="newFeed">Save</button>
+    </div>
+    <hr>
+  </div>
+
+  <div v-if="route == 'controls'">
+    {% include 'rss/control.html' %}
+  </div>
+
+  <div v-if="route == 'feeds'">
+    {% include 'rss/feeds.html' %}
+  </div>
+
+  <div v-if="route == 'search'">
+    {% include 'rss/search.html' %}
+  </div>
+
+  <div v-if="route == 'home'">
+    {% include 'rss/home.html' %}
+  </div>
+
+  <div v-if="route == 'news'">
+    {% include 'rss/news.html' %}
+  </div>
+
+  <div v-if="route == 'show'">
+    {% include 'rss/show.html' %}
+  </div>
+
+  <div v-if="route == 'sport'">
+    {% include 'rss/sport.html' %}
+  </div>
+
+  <div v-if="route == 'life'">
+    {% include 'rss/life.html' %}
+  </div>
+
+  <div v-if="route == 'tech'">
+    {% include 'rss/tech.html' %}
+  </div>
+
+  <div v-if="route == 'viral'">
+    {% include 'rss/viral.html' %}
+  </div>
+
+  </div>
+
+
+{% load static %}
+
+ <script type="application/javascript" src="{% static 'rss/app.js' %}"></script>
+ <script type="application/javascript">
+  window.addEventListener("load", function() {
+  rssApp.setup();
+});
+ </script>
+
+
+
+{% if feed %}
+<h2>{{ feed.feed.title }}</h2>
+{% if feed.items %}
+{% for item in feed.items %}
+
+
+<div>
+    <p>
+        {{ item.published }}
+        <a href="{{ item.link }}">{{ item.title }}</a>
+        {{ item.author }}
+
+
+    </p>
+</div>
+
+{% endfor %}
+{% endif %}
+{% else %}
+{% endif %}
+
+
+<h2>{{ feed.feed.title }}</h2>
+
+
+{% if feed.items %}
+{% for item in feed.items %}
+
+
+<div>
+    <p>
+        {{ item.published }}
+        <a href="{{ item.link }}">{{ item.title }}</a>
+        {{ item.author }}
+    </p>
+</div>
+
+{% endfor %}
+{% endif %}
+{% endblock %}
