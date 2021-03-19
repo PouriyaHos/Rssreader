@@ -6,7 +6,7 @@ Django==2.2.1
 django-bootstrap-form==3.4
 django-filter==2.1.0
 django-rss-xml-parser==0.4
-djangorestframework==3.9.2
+djangorestframework==3.11.2
 djangorestframework-jsonp==1.0.2
 doqu==0.28.2
 entrypoints==0.3
