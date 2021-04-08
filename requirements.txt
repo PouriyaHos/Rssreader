@@ -2,7 +2,7 @@ astroid==2.2.5
 certifi==2017.11.5
 chardet==3.0.4
 colorama==0.4.1
-Django==2.2.1
+Django==2.2.20
 django-bootstrap-form==3.4
 django-filter==2.1.0
 django-rss-xml-parser==0.4
